@@ -1,7 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Form, Field, reduxForm } from 'redux-form';
 
 import './styles.css';
 
@@ -10,15 +9,25 @@ const onSubmit = () => {
   console.log(uuidv4());
 };
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
-    <div >
-      <input {...input} className="form-signin-input" placeholder={label} type={type} />
-      {touched &&
-        (error && <span>{error}</span>)}
-    </div>
-);
+const validateInputs = (nameInput, birthdayInput, lastNameInput, mailInput, passwordInput) => {
+  
+  const date = new Date(birthdayInput)
+  console.log();
+  if(nameInput==='' || birthdayInput==='' || lastNameInput==='' || mailInput==='' || passwordInput==='')
+    return false;
+  if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(mailInput))
+    return false;
+  if(isNaN(date.getTime() || date.getFullYear()>2020 || date.getFullYear()<1920))
+    return false;
+  return true;
+};
 
-const Signin = ({ handleSubmit, submitting }) => {
+export const Signin = () => {
+  const [nameInput, changeNameInput] = useState('');
+  const [lastNameInput, changeLastNameInput] = useState('');
+  const [birthdayInput, changeBirthdayInput] = useState('');
+  const [mailInput, changeMailInput] = useState('');
+  const [passwordInput, changePasswordInput] = useState('');
   return (
     <div className="form-signin">
         <div className="form-signin-container">
@@ -26,31 +35,54 @@ const Signin = ({ handleSubmit, submitting }) => {
           {'Crear cuenta'}
         </h1>
         <br/>
-        <Form onSubmit={handleSubmit(onSubmit)}>
-          <Field
-            name="name"
-            type="text"
-            value=''
-            component={renderField}
-            label="Nombre"
-          />
-          <Field 
-            name="email" 
-            type="email" 
-            component={renderField} 
-            label="Correo" 
-          />
-          <Field 
-            name="age" 
-            type="number" 
-            component={renderField} 
-            label="Age" 
-          />
-          <br/>
-          <button type="submit" className="form-signin-button" disabled={!submitting}>
-            {'Crear'}
+        <label style={{width: '270px'}}>
+          {'Nombre:'}
+        </label>
+        <input className="form-signin-input"
+          type="text"
+          value={nameInput}
+          onChange={e => changeNameInput(e.target.value)}
+        />
+        <label style={{width: '270px'}}>
+          {'Apelido:'}
+        </label>
+        <input className="form-signin-input"
+          type="text"
+          value={lastNameInput}
+          onChange={e => changeLastNameInput(e.target.value)}
+        />
+        <label style={{width: '270px'}}>
+          {'Fecha de nacimiento:'}
+        </label>
+        <input className="form-signin-input"
+          type="date"
+          value={birthdayInput}
+          onChange={e => changeBirthdayInput(e.target.value)}
+        />
+        <label style={{width: '270px'}}>
+          {'Correo:'}
+        </label>
+        <input className="form-signin-input"
+          type="email"
+          value={mailInput}
+          onChange={e => changeMailInput(e.target.value)}
+        />
+        <label style={{width: '270px'}}>
+          {'Contraseña:'}
+        </label>
+        <input className="form-signin-input"
+          type="password"
+          value={passwordInput}
+          onChange={e => changePasswordInput(e.target.value)}
+        />
+        <br/>
+        <Link to={validateInputs(nameInput, birthdayInput, lastNameInput, mailInput, passwordInput) ? '/login' : '/signin'} >
+          <button type="submit" className="form-login-button" onClick={
+            () => validateInputs(nameInput, birthdayInput, lastNameInput, mailInput, passwordInput) ? onSubmit() : alert("Revisa tus datos para continuar")
+          }>
+            {'Registrarse'}
           </button>
-        </Form>
+        </Link>
         <br/>
         <label>
           {'¿Ya tienes una cuenta? '}
@@ -60,29 +92,3 @@ const Signin = ({ handleSubmit, submitting }) => {
     </div>
   );
 } 
-
-export default reduxForm({
-  form: 'signin',
-  validate: values => {
-    console.log(values)
-    const errors = {}
-    if (!values.name) {
-      errors.name = 'Obligatorio'
-    } else if (values.username.length > 10) {
-      errors.name = 'Debe tener 10 caracteres o menos'
-    }
-    if (!values.email) {
-      errors.email = 'Obligatorio'
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-      errors.email = 'Email invalido'
-    }
-    if (!values.age) {
-      errors.age = 'Required'
-    } else if (isNaN(Number(values.age))) {
-      errors.age = 'Must be a number'
-    } else if (Number(values.age) < 18) {
-      errors.age = 'Sorry, you must be at least 18 years old'
-    }
-    return errors
-  },
-})(Signin)

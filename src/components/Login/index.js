@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import './styles.css';
+import logo from '../../../public/Images/music-note.png';
 import * as actions from '../../actions/loggedUser';
 
 
@@ -13,6 +14,8 @@ const Login = ({ onSubmit }) => {
   return (
     <div className="form-login">
         <div className="form-login-container">
+        <img alt="logo" src={logo} style={{width: '80px'}}/>
+        <br/>
         <h1 className="form-login-title">
               {'Login'}
         </h1>

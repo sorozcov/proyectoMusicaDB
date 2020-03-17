@@ -5,7 +5,8 @@ import { createHashHistory } from 'history';
 
 import * as selectors from '../../reducers';
 import Login from '../Login';
-import Signin from '../Signin';
+import { Signin } from '../Signin';
+import { Main } from '../Main';
 
 const history = createHashHistory();
 const App = ({ store }) => { 
@@ -24,6 +25,9 @@ const App = ({ store }) => {
       </Route>
       <Route path='/signin'>
         <Signin />
+      </Route>
+      <Route path='/main'>
+        <Main />
       </Route>
     </Router>
   </Provider>

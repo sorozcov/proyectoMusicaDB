@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    height: 600px;
+    height: 90vh;
     justify-content: center;
     width: 100%;
 }
@@ -19,9 +19,9 @@
     display: flex;
     flex-direction: column;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    height: 400px;
+    height: 550px;
     justify-content: center;
-    width: 30%;
+    width: 450px;
 }
 
 .form-signin-title {
@@ -36,7 +36,9 @@
     box-sizing: border-box;
     display: inline-block;
     margin-top: 10px;
+    height: 34px;
     padding: 8px 16px;
+    width: 270px;
 }
 
 .form-signin-button {

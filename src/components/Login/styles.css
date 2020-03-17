@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    height: 600px;
+    height: 90vh;
     justify-content: center;
     width: 100%;
 }
@@ -19,9 +19,9 @@
     display: flex;
     flex-direction: column;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    height: 400px;
+    height: 450px;
     justify-content: center;
-    width: 30%;
+    width: 450px;
 }
 
 .form-login-title {
@@ -37,7 +37,7 @@
     display: inline-block;
     margin-top: 10px;
     padding: 8px 16px;
-    width: 60%;
+    width: 270px;
 }
 
 .form-login-button {
