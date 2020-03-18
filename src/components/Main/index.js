@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import './styles.css';
 import logo from '../../../public/Images/music-note.png';
@@ -12,6 +12,7 @@ const optImg = [Canciones, Artistas, Albumes, Reportes];
 
 export const Main = () => {
   return (
+    <Fragment>
     <div className="sidebar">
       <div className="sidebar-title">
         <img alt="logo" src={logo} className="sidebar-title-image"/>
@@ -26,5 +27,9 @@ export const Main = () => {
         ))}
       </div>
     </div>
+    <div className="header">
+
+    </div>
+    </Fragment>
   );
 } 

@@ -83,3 +83,17 @@
     border-top-width: 5px;
     background-color: #FFD400;
 }
+
+.header {
+    align-items: center;
+    color: dimgray;
+    box-shadow: 1px 0px 20px 0px rgba(0,0,0,0.75);
+    display: flex;
+    position: fixed;
+    left: 250px;
+    top: 0px;
+    flex-direction: row;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    height: 18vh;
+    width: 100vw;
+}
