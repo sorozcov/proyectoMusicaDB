@@ -4,7 +4,7 @@ var Artist = require('../models/artist');
 var api = express.Router();
 
 api.get('/', (req, res) => {
-  Artist.retrieveAll((err, artist) => {
+  Artist.getAll((err, artist) => {
     if (err)
       return res.json(err);
     return res.json(artist);
@@ -12,14 +12,14 @@ api.get('/', (req, res) => {
 });
 
 
-// api.post('/', (req, res) => {
-//   var city = req.body.city;
+api.post('/', (req, res) => {
+  var artistName = req.body.artistName;
 
-//   Cities.insert(city, (err, result) => {
-//     if (err)
-//       return res.json(err);
-//     return res.json(result);
-//   });
-// });
+  Artist.insert(artistName, (err, result) => {
+    if (err)
+      return res.json(err);
+    return res.json(result);
+  });
+});
 
 module.exports = api;

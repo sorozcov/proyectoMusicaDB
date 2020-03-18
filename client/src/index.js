@@ -11,7 +11,7 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 
-const getCityList = () => {
+const getArtistList = () => {
   fetch('/api/artist',{
     headers : { 
       'Content-Type': 'application/json',
@@ -27,5 +27,22 @@ const getCityList = () => {
     console.log(artistList);
   });
 };
-console.log("hey");
-getCityList();
+
+getArtistList();
+
+
+const addArtist = () => {
+  fetch('/api/artist', {
+    method: 'post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ artistName: "Silvio"})
+  })
+  .then(res => res.json())
+  .then(res => {
+    console.log(res);
+    getArtistList();
+    
+  });
+};
+
+addArtist();
